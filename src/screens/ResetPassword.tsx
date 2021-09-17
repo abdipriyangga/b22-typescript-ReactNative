@@ -6,40 +6,42 @@ import { studetRegistration } from '../assets';
 import { ButtonCustom } from '../components/ButtonCustom';
 import Header from '../components/Header';
 import Input from '../components/Input';
-import { Register as Action } from '../redux/action/auth';
+import { ResetPassword as ResetAction } from '../redux/action/auth';
 
-interface RegisterProps {
+interface ResetProps {
   navigation: any;
 }
 
-const Register = ({ navigation }: RegisterProps) => {
-  const [name, setName] = useState('');
+const ResetPassword = ({ navigation }: ResetProps) => {
+  const [code, setCode] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const dispatch = useDispatch();
   const form = {
-    name,
+    code,
     email,
     password,
+    confirmPassword,
   };
   const onSubmit = () => {
-    dispatch(Action(form, navigation));
+    dispatch(ResetAction(form, navigation));
   };
   return (
     <>
       <View>
         <Header onPress={() => navigation.goBack()} />
         <ScrollView>
-          <Text style={styles.textHeader}>Registration</Text>
+          <Text style={styles.textHeader}>Reset Your Password</Text>
           <View style={styles.wrapImage}>
             <Image source={studetRegistration} />
           </View>
-          <View style={{ alignSelf: 'center', marginTop: 15 }}>
+          <View style={{ alignSelf: 'center', marginTop: 10 }}>
             <View>
               <Input
-                label="Name"
-                value={name}
-                onChangeText={setName}
+                label="Code"
+                value={code}
+                onChangeText={setCode}
                 placeholder="please enter your name"
               />
               <Input
@@ -55,9 +57,16 @@ const Register = ({ navigation }: RegisterProps) => {
                 secureTextEntry
                 placeholder="please enter your passwrord"
               />
+              <Input
+                label="ConfirmPassword"
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+                secureTextEntry
+                placeholder="confirm your passwrord"
+              />
             </View>
             <View style={{ marginTop: 10 }}>
-              <ButtonCustom text="Register" onPress={onSubmit} />
+              <ButtonCustom text="Reset Password" onPress={onSubmit} />
             </View>
           </View>
         </ScrollView>
@@ -66,7 +75,7 @@ const Register = ({ navigation }: RegisterProps) => {
   );
 };
 
-export default Register;
+export default ResetPassword;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

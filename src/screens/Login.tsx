@@ -11,12 +11,13 @@ import { Login as ActionLogin } from '../redux/action/auth';
 interface LoginProps {
   email: string;
   password: string;
-  navigation: any;
+  navigation?: any;
 }
+
 const Login = ({ navigation }: LoginProps) => {
-  const { email, setEmail } = useState('');
-  const { password, setPassword } = useState('');
   const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const form = {
     email,
     password,
@@ -40,7 +41,7 @@ const Login = ({ navigation }: LoginProps) => {
                 label="Email"
                 value={email}
                 onChangeText={setEmail}
-                placeholder="please enter your Email"
+                placeholder="please enter your email"
               />
               <Input
                 label="Password"

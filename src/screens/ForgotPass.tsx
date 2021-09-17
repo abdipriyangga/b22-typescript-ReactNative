@@ -6,21 +6,18 @@ import { studetRegistration } from '../assets';
 import { ButtonCustom } from '../components/ButtonCustom';
 import Header from '../components/Header';
 import Input from '../components/Input';
-import { Login as ActionLogin } from '../redux/action/auth';
+import { generateForgotCode as ForgotAction } from '../redux/action/auth';
 
 interface ForgotProps {
   email: string;
   navigation: any;
 }
 const ForgotPass = ({ navigation }: ForgotProps) => {
-  const { email, setEmail } = useState('');
+  const [email, setEmail] = useState('');
   const dispatch = useDispatch();
-  const form = {
-    email,
-  };
 
   const onSubmit = () => {
-    dispatch(ActionLogin(form));
+    dispatch(ForgotAction(email, navigation));
   };
   return (
     <>
